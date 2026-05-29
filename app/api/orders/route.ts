@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
   }
 
   const token = uuidv4().replace(/-/g, "").substring(0, 12);
+  const manager_token = uuidv4().replace(/-/g, "");
   const cutoff_at = computeCutoff(delivery_date);
 
   const db = supabaseAdmin();
@@ -19,6 +20,7 @@ export async function POST(req: NextRequest) {
     .from("team_orders")
     .insert({
       token,
+      manager_token,
       company_name,
       manager_name,
       manager_email,

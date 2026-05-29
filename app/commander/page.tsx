@@ -34,7 +34,7 @@ export default function CommanderPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Erreur");
-      router.push(`/commande/${data.order.id}`);
+      router.push(`/commande/${data.order.id}?mt=${data.order.manager_token}`);
     } catch (err: any) {
       setError(err.message);
       setLoading(false);

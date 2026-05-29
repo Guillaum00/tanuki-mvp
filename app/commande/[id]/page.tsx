@@ -11,6 +11,7 @@ function CommandeContent() {
   const { id } = useParams<{ id: string }>();
   const searchParams = useSearchParams();
   const cancelled = searchParams.get("cancelled");
+  const mt = searchParams.get("mt") || "";
 
   const [order, setOrder] = useState<TeamOrder | null>(null);
   const [boxes, setBoxes] = useState<BoxOrder[]>([]);
@@ -18,15 +19,18 @@ function CommandeContent() {
   const [paying, setPaying] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState("");
+  const [forbidden, setForbidden] = useState(false);
 
   const load = useCallback(async () => {
-    const res = await fetch(`/api/orders/${id}`);
+    if (!mt) { setForbidden(true); setLoading(false); return; }
+    const res = await fetch(`/api/orders/${id}?mt=${mt}`);
+    if (res.status === 403) { setForbidden(true); setLoading(false); return; }
     if (!res.ok) { setLoading(false); return; }
     const data = await res.json();
     setOrder(data.order);
     setBoxes(data.boxes);
     setLoading(false);
-  }, [id]);
+  }, [id, mt]);
 
   useEffect(() => {
     load();
@@ -50,7 +54,7 @@ function CommandeContent() {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ order_id: order.id }),
+        body: JSON.stringify({ order_id: order.id, manager_token: mt }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Erreur paiement");
@@ -67,6 +71,18 @@ function CommandeContent() {
         <SiteHeader />
         <div className="max-w-2xl mx-auto px-6 py-16 text-center">
           <p className="font-bold uppercase tracking-widest text-sm">Chargement…</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (forbidden) {
+    return (
+      <div style={{ backgroundColor: "var(--paper)" }}>
+        <SiteHeader />
+        <div className="max-w-2xl mx-auto px-6 py-16 text-center">
+          <p className="font-black text-2xl uppercase mb-2">Accès non autorisé</p>
+          <p className="text-sm">Ce lien de tableau de bord est invalide ou expiré.</p>
         </div>
       </div>
     );

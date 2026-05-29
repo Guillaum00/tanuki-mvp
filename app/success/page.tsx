@@ -10,15 +10,16 @@ import { formatDate, formatPrice, PRICE_PER_BOX } from "@/lib/menu";
 function SuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("order_id");
+  const mt = searchParams.get("mt") || "";
   const [order, setOrder] = useState<TeamOrder | null>(null);
   const [boxes, setBoxes] = useState<BoxOrder[]>([]);
 
   useEffect(() => {
-    if (!orderId) return;
-    fetch(`/api/orders/${orderId}`)
+    if (!orderId || !mt) return;
+    fetch(`/api/orders/${orderId}?mt=${mt}`)
       .then((r) => r.json())
       .then((d) => { setOrder(d.order); setBoxes(d.boxes || []); });
-  }, [orderId]);
+  }, [orderId, mt]);
 
   return (
     <main className="max-w-xl mx-auto px-6 py-16 text-center">
@@ -42,9 +43,9 @@ function SuccessContent() {
         Un récapitulatif vous a été envoyé par email.
       </p>
 
-      {orderId && (
+      {orderId && mt && (
         <Link
-          href={`/commande/${orderId}`}
+          href={`/commande/${orderId}?mt=${mt}`}
           className="inline-block font-bold text-sm uppercase tracking-widest py-3 px-6 border-2"
           style={{ borderColor: "var(--black)" }}
         >

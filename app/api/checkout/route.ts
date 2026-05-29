@@ -4,17 +4,22 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { PRICE_PER_BOX, MIN_BOXES } from "@/lib/menu";
 
 export async function POST(req: NextRequest) {
-  const { order_id } = await req.json();
+  const { order_id, manager_token } = await req.json();
   const base = process.env.NEXT_PUBLIC_BASE_URL!;
 
   const db = supabaseAdmin();
   const { data: order } = await db
     .from("team_orders")
-    .select("*, box_orders(count)")
+    .select("*")
     .eq("id", order_id)
     .single();
 
   if (!order) return NextResponse.json({ error: "Commande introuvable" }, { status: 404 });
+
+  // Vérification manager_token
+  if (!manager_token || manager_token !== order.manager_token) {
+    return NextResponse.json({ error: "Accès non autorisé" }, { status: 403 });
+  }
 
   const { data: boxes } = await db
     .from("box_orders")
@@ -44,8 +49,8 @@ export async function POST(req: NextRequest) {
     ],
     metadata: { order_id },
     customer_email: order.manager_email,
-    success_url: `${base}/success?order_id=${order_id}`,
-    cancel_url: `${base}/commande/${order_id}?cancelled=1`,
+    success_url: `${base}/success?order_id=${order_id}&mt=${order.manager_token}`,
+    cancel_url: `${base}/commande/${order_id}?mt=${order.manager_token}&cancelled=1`,
   });
 
   await db
