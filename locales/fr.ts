@@ -2,7 +2,7 @@ const fr = {
   nav: { back: "← TANUKI", duration: "2 minutes" },
   progress: { question: "Question", of: "sur" },
   ui: {
-    continue: "Continuer →",
+    "continue": "Continuer →",
     start: "COMMENCER",
     specify: "Précisez…",
     multi_hint: "Plusieurs réponses possibles",

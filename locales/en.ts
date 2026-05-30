@@ -4,7 +4,7 @@ const en: Locale = {
   nav: { back: "← TANUKI", duration: "2 minutes" },
   progress: { question: "Question", of: "of" },
   ui: {
-    continue: "Continue →",
+    "continue": "Continue →",
     start: "START",
     specify: "Please specify…",
     multi_hint: "Select all that apply",

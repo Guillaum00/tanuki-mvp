@@ -311,7 +311,7 @@ function SurveyInner() {
       <Ctx2>{t.questions.q1.context}</Ctx2>
       <RadioGrid options={entries(t.answers.locations)} value={data.q1_location} onChange={(v) => set("q1_location", v)} />
       {data.q1_location === "other" && <OtherInput value={data.q1_other} onChange={(v) => set("q1_other", v)} placeholder={t.ui.specify} />}
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q1_location || (data.q1_location === "other" && !data.q1_other)} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q1_location || (data.q1_location === "other" && !data.q1_other)} />
     </Shell>
   );
 
@@ -321,7 +321,7 @@ function SurveyInner() {
       <Q>{t.questions.q2.title}</Q>
       <Ctx2>{t.questions.q2.context}</Ctx2>
       <RadioGrid options={entries(t.answers.team_sizes)} value={data.q2_team_size} onChange={(v) => set("q2_team_size", v)} sublabels={t.answers.team_sizes_sub} />
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q2_team_size} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q2_team_size} />
     </Shell>
   );
 
@@ -331,7 +331,7 @@ function SurveyInner() {
       <Q>{t.questions.q3.title}</Q>
       <Ctx2>{t.questions.q3.context}</Ctx2>
       <RadioGrid options={entries(t.answers.frequencies)} value={data.q3_order_frequency} onChange={(v) => set("q3_order_frequency", v)} />
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q3_order_frequency} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q3_order_frequency} />
     </Shell>
   );
 
@@ -342,7 +342,7 @@ function SurveyInner() {
       <Ctx2>{t.questions.q4.context}</Ctx2>
       <RadioGrid options={entries(t.answers.decision_makers)} value={data.q4_decision_maker} onChange={(v) => set("q4_decision_maker", v)} />
       {data.q4_decision_maker === "other" && <OtherInput value={data.q4_other} onChange={(v) => set("q4_other", v)} placeholder={t.ui.specify} />}
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q4_decision_maker} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q4_decision_maker} />
     </Shell>
   );
 
@@ -352,7 +352,7 @@ function SurveyInner() {
       <Q>{t.questions.q5.title}</Q>
       <Ctx2>{t.questions.q5.context}</Ctx2>
       <RadioGrid options={entries(t.answers.team_sizes)} value={data.q5_meal_count} onChange={(v) => set("q5_meal_count", v)} sublabels={t.answers.team_sizes_sub} />
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q5_meal_count} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q5_meal_count} />
     </Shell>
   );
 
@@ -363,7 +363,7 @@ function SurveyInner() {
       <Ctx2>{t.questions.q6.context}</Ctx2>
       <RadioGrid options={entries(t.answers.payment_models)} value={data.q6_payment_model} onChange={(v) => set("q6_payment_model", v)} />
       {data.q6_payment_model === "other" && <OtherInput value={data.q6_other} onChange={(v) => set("q6_other", v)} placeholder={t.ui.specify} />}
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q6_payment_model} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q6_payment_model} />
     </Shell>
   );
 
@@ -374,7 +374,7 @@ function SurveyInner() {
       <Ctx2>{t.ui.multi_hint}</Ctx2>
       <MultiGrid options={entries(t.answers.payment_methods)} values={data.q7_payment_methods} onChange={(v) => set("q7_payment_methods", v)} />
       {data.q7_payment_methods.includes("other") && <OtherInput value={data.q7_other} onChange={(v) => set("q7_other", v)} placeholder={t.ui.specify} />}
-      <Cta onClick={next} label={t.ui.continue} disabled={data.q7_payment_methods.length === 0} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={data.q7_payment_methods.length === 0} />
     </Shell>
   );
 
@@ -385,7 +385,7 @@ function SurveyInner() {
       <Ctx2>{t.ui.multi_hint}</Ctx2>
       <MultiGrid options={entries(t.answers.current_services)} values={data.q8_current_services} onChange={(v) => set("q8_current_services", v)} />
       {data.q8_current_services.includes("other") && <OtherInput value={data.q8_other} onChange={(v) => set("q8_other", v)} placeholder={t.ui.specify} />}
-      <Cta onClick={next} label={t.ui.continue} disabled={data.q8_current_services.length === 0} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={data.q8_current_services.length === 0} />
     </Shell>
   );
 
@@ -395,7 +395,7 @@ function SurveyInner() {
       <Q>{t.questions.q9.title}</Q>
       <Ctx2>{t.questions.q9.context}</Ctx2>
       <RadioGrid options={entries(t.answers.budgets)} value={data.q9_budget} onChange={(v) => set("q9_budget", v)} sublabels={t.answers.budgets_sub} />
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q9_budget} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q9_budget} />
     </Shell>
   );
 
@@ -406,7 +406,7 @@ function SurveyInner() {
       <Ctx2>{`${t.ui.max_hint} 3`}</Ctx2>
       <MultiGrid options={entries(t.answers.frustrations)} values={data.q10_frustrations} onChange={(v) => set("q10_frustrations", v)} max={3} />
       {data.q10_frustrations.includes("other") && <OtherInput value={data.q10_other} onChange={(v) => set("q10_other", v)} placeholder={t.ui.specify} />}
-      <Cta onClick={next} label={t.ui.continue} disabled={data.q10_frustrations.length === 0} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={data.q10_frustrations.length === 0} />
     </Shell>
   );
 
@@ -418,7 +418,7 @@ function SurveyInner() {
         <p className="text-sm font-medium" style={{ color: "var(--off-black)" }}>{t.questions.q11.context}</p>
       </div>
       <RadioGrid options={entries(t.answers.reactions)} value={data.q11_reaction} onChange={(v) => set("q11_reaction", v)} />
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q11_reaction} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q11_reaction} />
     </Shell>
   );
 
@@ -428,7 +428,7 @@ function SurveyInner() {
       <Q>{t.questions.q12.title}</Q>
       <Ctx2>{t.ui.multi_hint}</Ctx2>
       <MultiGrid options={entries(t.answers.products)} values={data.q12_products} onChange={(v) => set("q12_products", v)} />
-      <Cta onClick={next} label={t.ui.continue} disabled={data.q12_products.length === 0} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={data.q12_products.length === 0} />
     </Shell>
   );
 
@@ -438,7 +438,7 @@ function SurveyInner() {
       <Q>{t.questions.q13.title}</Q>
       <Ctx2>{`${t.ui.max_hint} 2`}</Ctx2>
       <MultiGrid options={entries(t.answers.trial_drivers)} values={data.q13_trial_drivers} onChange={(v) => set("q13_trial_drivers", v)} max={2} />
-      <Cta onClick={next} label={t.ui.continue} disabled={data.q13_trial_drivers.length === 0} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={data.q13_trial_drivers.length === 0} />
     </Shell>
   );
 
@@ -448,7 +448,7 @@ function SurveyInner() {
       <Q>{t.questions.q14.title}</Q>
       <Ctx2>{t.questions.q14.context}</Ctx2>
       <RadioGrid options={entries(t.answers.tasting)} value={data.q14_tasting_interest} onChange={(v) => set("q14_tasting_interest", v)} sublabels={t.answers.tasting_sub} />
-      <Cta onClick={next} label={t.ui.continue} disabled={!data.q14_tasting_interest} />
+      <Cta onClick={next} label={t.ui["continue"]} disabled={!data.q14_tasting_interest} />
     </Shell>
   );
 
@@ -464,7 +464,7 @@ function SurveyInner() {
         value={data.q15_comments}
         onChange={(e) => set("q15_comments", e.target.value)}
       />
-      <Cta onClick={next} label={t.ui.continue} />
+      <Cta onClick={next} label={t.ui["continue"]} />
     </Shell>
   );
 

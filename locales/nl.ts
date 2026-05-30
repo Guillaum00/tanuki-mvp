@@ -4,7 +4,7 @@ const nl: Locale = {
   nav: { back: "← TANUKI", duration: "2 minuten" },
   progress: { question: "Vraag", of: "van" },
   ui: {
-    continue: "Verder →",
+    "continue": "Verder →",
     start: "START",
     specify: "Gelieve te preciseren…",
     multi_hint: "Meerdere antwoorden mogelijk",
